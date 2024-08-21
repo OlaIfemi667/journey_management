@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polls Index</title>
+</head>
+<body>
+    <h1>{{ welcome_message }}</h1>
+    <h2>Available Vehicles</h2>
+    <ul>
+        {% for key, value in vehicles.items %}
+            <li>{{ value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

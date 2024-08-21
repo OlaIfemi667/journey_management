@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Réservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Réserver un Trajet</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="booking_with_escale">Avec Escale ? :</label>
+        <select id="booking_with_escale" name="booking_with_escale">
+            <option value="True">Oui</option>
+            <option value="False">Non</option>
+        </select>
+
+        <label for="places_reservees">Nombre de places réservées :</label>
+        <input type="number" id="places_reservees" name="places_reservees" min="1" required>
+        
+        <label for="booked_vehicles">Type de Véhicule :</label>
+        <select id="booked_vehicles" name="booked_vehicles" required>
+            {% for key, value in LES_TYPES_DE_VEHICULES.items %}
+                <option value={{ key }}>{{ value }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Réserver</button>
+    </form>
+</body>
+</html>
